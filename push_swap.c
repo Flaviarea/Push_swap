@@ -13,7 +13,14 @@
 #include "push_swap.h"
 
 /*
-initialize the stack with the args.
+    initialize the stack with the args.
+    skip first argc, which is the programm = argc starts with 1
+    possiamo avere tati argv quanti le integers
+    ma i non 'e nel loop, quindi rimane sempre 1 ? perch'e creo i invece di fare while argc > 1?
+    ft_is_valid_nbr controlla che le integers siano nella rande dei caratteri validi 
+    add_node cosa fa?
+    t_has_dup controlla che siano solo numer originali senza doppioi 
+    Return: the stack, perche?
 */
 
 t_node  *init_stack(int argc, char *argv[])
@@ -21,7 +28,7 @@ t_node  *init_stack(int argc, char *argv[])
     t_node *stack = NULL;
     int i;
 
-    i = 1; // argv start from 1
+    i = 1; 
     while (argc > i)
     {
         if (!ft_is_valid_nbr(argv[i]))
@@ -29,7 +36,7 @@ t_node  *init_stack(int argc, char *argv[])
             write(2, "Error\n", 6);
             exit(1);
         }
-        add_node(&stack, ft_atoi(argv[i])); // converts and add the nbr to the stack
+        add_node(&stack, ft_atoi(argv[i])); 
         i++;
     }
     if (ft_has_dup(stack))
@@ -48,6 +55,8 @@ t_node  *init_stack(int argc, char *argv[])
     Handle errors (duplicates, non-numeric values, int bounds).
     Call Radix Sort to sort the numbers.
     Print the operations performed.
+
+    creiamo due liste e una int size per tenere conto di ?
 */
 
 int main(int argc, char *argv[])
@@ -59,11 +68,11 @@ int main(int argc, char *argv[])
     node_a = NULL;
     node_b = NULL;
     if (argc < 2)
-        return;
+        return(0);
 
     if (argc > 1)
     {
-        ft_create_node(&node_a, argc, argv); // transform input into a linked list
+        node_a = init_stack(argc, argv); // transform input into a linked list
         size = ft_list_size(node_a); // count elements of the list
         ft_put_index(&node_a, size); // assign a index to the number for radix sort
         ft_radixsort(&node_a, &node_b); // sort numbers

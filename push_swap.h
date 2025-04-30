@@ -18,7 +18,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft.h"
+//# include "libft.h"
 
 typedef struct s_node
 {
@@ -27,7 +27,17 @@ typedef struct s_node
 }   t_node;
 
 //operazioni
+int ft_is_digit(char c);
+long ft_atoi_long(const char *str);
+int ft_is_valid_nbr(const char *str);
 
+
+//stack utils
+int ft_error_dup(t_node *stack)
+void print_stack(t_node *stack)
+void free_stack(t_node **stack)
+void    add_node(t_node **stack, int value)
+t_node *create_node(int value)
 
 # endif
 
