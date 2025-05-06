@@ -1,10 +1,8 @@
-#include <stdio.h>
 #include "push_swap.h"
-//#include "libft.h"
 
 int main(void)
 {
-    /*
+    
         // test parsing
       // Test ft_isdigit
     printf("ft_is_digit('4') = %d (expected 1)\n", ft_is_digit('4'));
@@ -29,7 +27,7 @@ int main(void)
       printf("ft_is_valid_nbr(\"-2147483649\") = %d (expected 0)\n", ft_is_valid_nbr("-2147483649"));
       printf("ft_is_valid_nbr(\"+\") = %d (expected 0)\n", ft_is_valid_nbr("+"));
       printf("ft_is_valid_nbr(\"-\") = %d (expected 0)\n", ft_is_valid_nbr("-"));
-    */
+    
 
     //test stack_utils
     t_node *stack = NULL;

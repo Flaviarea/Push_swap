@@ -10,49 +10,110 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
 
+void    put_index(t_node **stack);
+int	get_min(t_node *stack);
+void    ft_put_index(t_node **stack, int size);
+void    ft_radix_sort(t_node **a, t_node **b);
+
 /*
-    ft_is_valid_nbr:
-    Check if the string is a valid number.
-    String must be numeric, need to handle negativ nbr,
-    cannot contain non-numerical char. 
-    Input: a string pointer 
-    Output: a integer
-*/
+    ft_list_size:
+    Conta quanti elementi sono presenti nello stack a.
+    Questo numero è usato per determinare quante passate 
+    servono nel radix sort (in base al numero di bit massimo).
+ */
 
-int ft_is_valid_nbr(char *s)
+int	ft_list_size(t_node *stack)
 {
-    int i;
+	int	size;
 
-    i = 0;
-    if (s[i] == '+' || s[i] == '-') //handle the sign
-    {
-        i++;
-    }
-    while(s[i])
-    {
-        if(!ft_isdigit(s[i]))
-        {
-            return(0);
-        }
-        i++
-    }
-    long nbr = ft_atoi(s) //convert the string in a integer
-    if (nbr < INT_MIN || INT_MAX)
-    {
-        return (0); // nbr is not in the limits
-    }
-    return (1); // nbr is valid 
+	size = 0;
+	while (stack != NULL)
+	{
+		size++;
+		stack = stack->next;
+	}
+	return(size);
 }
 
-/*
-    ft_has_dup:
-    Check if there are duplicted nbr in the stack
-    Stack is a list we pass after the function init_stack has initialized it. 
-    Input: a pointer to a list(stack)
-    Return: 1 if it finds a duplicate, 0 if it doesn't.
-*/
+int	get_min(t_node *stack)
+{
+	int min = stack->value;
+	while (stack)
+	{
+		if (stack->value < min)
+			min = stack->value;
+		stack = stack->next;
+	}
+	return (min);
+}
 
-int ft_has_dup(t_node *stack)
+void	ft_put_index(t_node **stack, int size)
+{
+	t_node	*current;
+	t_node	*min_node;
+	int		index;
+
+	index = 0;
+	while (index < size)
+	{
+		current = *stack;
+		min_node = NULL;
+		while (current)
+		{
+			if (current->index == -1 && (!min_node 
+						|| current->value < min_node->value))
+				min_node = current;
+			current = current->next;
+		}
+		if (min_node)
+			min_node->index = index++;
+	}
+}
+
+int	get_max_bits(t_node *stack)
+{
+	int max_index;
+	int bits;
+
+	max_index = 0;
+	bits = 0;
+
+	while (stack)
+	{
+		if (stack->index > max_index)
+			max_index = stack->index;
+		stack = stack->next;
+	}
+	while ((max_index >> bits) != 0)
+		bits++;
+	return (bits);
+}
+
+void	ft_radix_sort(t_node **a, t_node **b)
+{
+	int	i;
+	int	j;
+	int	size;
+	int	max_bits;
+
+	i = 0;
+	size = ft_list_size(*a);
+	max_bits = get_max_bits(*a);
+	while (i < max_bits)
+	{
+		j = 0;
+		while (j < size)
+		{
+			if ((((*a)->index >> i) & 1) == 1)
+				ra(a);
+			else
+				pb(a, b);
+			j++;
+		}
+		while (*b)
+			pa(a, b);
+		i++;
+	}
+}

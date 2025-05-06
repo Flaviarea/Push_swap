@@ -1,17 +1,24 @@
-NAME = push_swap.a
+NAME = push_swap
 HEADER = push_swap.h
-FLAGS = -Wall -Wextra -Werror
-SRC = 
+CFLAGS = -Wall -Wextra -Werror 
 
-OBJ = $(SRC: .c=.o)
+SRC = parsing.c \
+	operations.c \
+	push_swap_utils.c \
+	push_swap.c \
+	stack_utils.c \
+	sorting.c \
+	rotation.c \
+
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+$(NAME): $(OBJ) 
+	cc $(CFLAGS) -o $(NAME) $(OBJ)
 
 %.o: %.c
-	cc $(FLAGS) -I . -c $< -o $@
+	cc $(CFLAGS) -I . -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
@@ -21,4 +28,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY. all clean fclean re
+.PHONY: all clean fclean re

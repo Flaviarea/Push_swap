@@ -12,41 +12,8 @@
 
 #include "push_swap.h"
 
-/*
-    initialize the stack with the args.
-    skip first argc, which is the programm = argc starts with 1
-    possiamo avere tati argv quanti le integers
-    ma i non 'e nel loop, quindi rimane sempre 1 ? perch'e creo i invece di fare while argc > 1?
-    ft_is_valid_nbr controlla che le integers siano nella rande dei caratteri validi 
-    add_node cosa fa?
-    t_has_dup controlla che siano solo numer originali senza doppioi 
-    Return: the stack, perche?
-*/
-
-t_node  *init_stack(int argc, char *argv[])
-{
-    t_node *stack = NULL;
-    int i;
-
-    i = 1; 
-    while (argc > i)
-    {
-        if (!ft_is_valid_nbr(argv[i]))
-        {
-            write(2, "Error\n", 6);
-            exit(1);
-        }
-        add_node(&stack, ft_atoi(argv[i])); 
-        i++;
-    }
-    if (ft_has_dup(stack))
-    {
-        write(2, "Error\n", 6);
-        free_stack(&stack);
-        exit(1);
-    }
-    return(stack);
-}
+void	rotate_stack(t_node **stack);
+void	rb(t_node **b);
 
 /*
     main:
@@ -55,29 +22,89 @@ t_node  *init_stack(int argc, char *argv[])
     Handle errors (duplicates, non-numeric values, int bounds).
     Call Radix Sort to sort the numbers.
     Print the operations performed.
-
-    creiamo due liste e una int size per tenere conto di ?
+    creiamo due puntatori alle linked list e una int size che 
+    memorizza la lunghezza di node_a, che serve per capire quante 
+	iterazioni fare nel radix sort.
 */
 
-int main(int argc, char *argv[])
+/*  
+    is_sorted:
+*/
+
+int	is_sorted(t_node *stack)
 {
-    t_node *node_a;
-    t_node *node_b;
-    int size;
+	t_node	*current;
 
-    node_a = NULL;
-    node_b = NULL;
-    if (argc < 2)
-        return(0);
-
-    if (argc > 1)
-    {
-        node_a = init_stack(argc, argv); // transform input into a linked list
-        size = ft_list_size(node_a); // count elements of the list
-        ft_put_index(&node_a, size); // assign a index to the number for radix sort
-        ft_radixsort(&node_a, &node_b); // sort numbers
-        ft_free(node_a);
-        ft_free(node_b);
-    }
-    return(0);
+	current = stack;
+	while (current && current->next)
+	{
+		if (current->value > current->next->value)
+			return (0);
+		current = current->next;
+	}
+	return (1);
 }
+
+void	rb(t_node **b)
+{
+	t_node	*tmp;
+	t_node	*last;
+
+	if (*b && (*b)->next)
+	{
+		tmp = *b;
+		*b = (*b)->next;
+		last = *b;
+		while (last->next)
+			last = last->next;
+		last->next = tmp;
+		tmp->next = NULL;
+		write(1, "rb\n", 3);
+	}
+}
+
+void	rotate_stack(t_node **stack)
+{
+	t_node	*tmp;
+	t_node	*last;
+
+	if (*stack && (*stack)->next)
+	{
+		tmp = *stack;
+		*stack = (*stack)->next;
+		last = *stack;
+		while (last->next)
+			last = last->next;
+		last->next = tmp;
+		tmp->next = NULL;
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	t_node	*a;
+	t_node	*b;
+	int		size;
+
+	a = NULL;
+	b = NULL;
+	if (argc < 2)
+		return (0);
+	a = init_stack(argc, argv);
+	if (is_sorted(a))
+		return (free_stack(&a), 0);
+	size = ft_list_size(a);
+	ft_put_index(&a, size);
+	if (size == 2)
+		sa(&a);
+	else if (size == 3)
+		sort_three(&a);
+	else if (size == 4)
+		sort_four(&a, &b);
+	else if (size == 5)
+		sort_five(&a, &b);
+	else
+		ft_radix_sort(&a, &b);
+			return (free_stack(&a), free_stack(&b), 0);
+}
+
