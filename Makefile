@@ -9,6 +9,8 @@ SRC = parsing.c \
 	stack_utils.c \
 	sorting.c \
 	rotation.c \
+	radix_sort.c \
+	double_rotation.c \
 
 OBJ = $(SRC:.c=.o)
 

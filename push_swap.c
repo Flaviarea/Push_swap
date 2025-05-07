@@ -12,55 +12,6 @@
 
 #include "push_swap.h"
 
-int		main(int argc, char **argv);
-void	ft_radix_sort(t_node **a, t_node **b);
-
-/*
-    main:
-    Read the arguments from the command line and convert them to numbers.
-    Initialize the stack a with these numbers.
-    Handle errors (duplicates, non-numeric values, int bounds).
-    Call Radix Sort to sort the numbers.
-    Print the operations performed.
-    creiamo due puntatori alle linked list e una int size che 
-    memorizza la lunghezza di node_a, che serve per capire quante 
-	iterazioni fare nel radix sort.
-*/
-
-void	rr(t_node **a, t_node **b)
-{
-	rotate_stack(a);
-	rotate_stack(b);
-	write (1, "rr\n", 3);
-}
-
-void	ft_radix_sort(t_node **a, t_node **b)
-{
-	int	i;
-	int	j;
-	int	size;
-	int	max_bits;
-
-	i = 0;
-	size = ft_list_size(*a);
-	max_bits = get_max_bits(*a);
-	while (i < max_bits)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if ((((*a)->index >> i) & 1) == 1)
-				ra(a);
-			else
-				pb(a, b);
-			j++;
-		}
-		while (*b)
-			pa(a, b);
-		i++;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_node	*a;

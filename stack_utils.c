@@ -11,17 +11,10 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//#include <stdio.h>
 
 void	add_node(t_node **stack, int value);
 void	free_stack(t_node **stack);
-void	print_stack(t_node *stack);
 int		ft_error_dup(t_node *stack);
-
-/*
-    create_node:
-    creare un nuovo nodo. Ogni nodo rappresenta un elemento dello stack.
-*/
 
 t_node	*create_node(int value)
 {
@@ -35,15 +28,6 @@ t_node	*create_node(int value)
 	new_node->next = NULL;
 	return (new_node);
 }
-
-/*
-    add_node:
-    aggiungere un nuvo nodo all'inizio dello stack. 
-    Quando aggiungiamo un elemento a uno stack, lo inseriamo all'inizio della lista, 
-    modificando il puntatore head dello stack.
-    Il nuovo nodo punta al primo nodo
-    Il "top" dello stack è ora il nuovo nod
-*/
 
 void	add_node(t_node **stack, int value)
 {
@@ -64,10 +48,6 @@ void	add_node(t_node **stack, int value)
 	current->next = new_node;
 }
 
-/*
-    free_stack:
-*/
-
 void	free_stack(t_node **stack)
 {
 	t_node	*current;
@@ -82,30 +62,6 @@ void	free_stack(t_node **stack)
 	}
 	*stack = NULL;
 }
-
-// elimina questa funzione che è solo di debug
-/*void print_stack(t_node *stack)
-{
-    t_node *current;
-
-    current = stack;
-    while (current != NULL)
-    {
-        printf("%d ", current->value); // change to ft_printf!!
-        current = current->next;
-    }
-    printf("\n"); // change to ft_printf!!
-}
-    */
-
-/*
-    ft_error_dup:
-    Check if there are duplicted nbr in the stack
-    Stack is a list we pass after the function init_stack has initialized it. 
-    Input: a pointer to a list(stack)
-    Return: 1 if it finds a duplicate, 0 if it doesn't.
-
-*/
 
 int	ft_error_dup(t_node *stack)
 {

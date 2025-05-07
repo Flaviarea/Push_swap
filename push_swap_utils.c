@@ -17,13 +17,6 @@ void	ft_put_index(t_node **stack, int size);
 int		get_max_bits(t_node *stack);
 int		is_sorted(t_node *stack);
 
-/*
-    ft_list_size:
-    Conta quanti elementi sono presenti nello stack a.
-    Questo numero è usato per determinare quante passate 
-    servono nel radix sort (in base al numero di bit massimo).
- */
-
 int	ft_list_size(t_node *stack)
 {
 	int	size;

@@ -6,7 +6,7 @@
 /*   By: frea <frea@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 12:09:50 by frea              #+#    #+#             */
-/*   Updated: 2025/03/27 12:09:52 by frea             ###   ########.fr       */
+/*   Updated: 2025/05/07 18:41:46 by frea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	rb(t_node **b);
 void	rra(t_node **a);
 void	rrb(t_node **b);
-void	rrr(t_node **a, t_node **b);
 
 void	ra(t_node **a)
 {
@@ -93,11 +92,4 @@ void	rrb(t_node **b)
 		*b = last;
 		write(1, "rrb\n", 4);
 	}
-}
-
-void	rrr(t_node **a, t_node **b)
-{
-	reverse_rotate_stack(a);
-	reverse_rotate_stack(b);
-	write(1, "rrr\n", 4);
 }

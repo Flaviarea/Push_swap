@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_radix_sort.c                                    :+:      :+:    :+:   */
+/*   double_rotation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frea <frea@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 18:17:48 by frea              #+#    #+#             */
-/*   Updated: 2025/05/07 18:17:50 by frea             ###   ########.fr       */
+/*   Created: 2025/05/07 18:17:33 by frea              #+#    #+#             */
+/*   Updated: 2025/05/07 18:17:38 by frea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_radix_sort(t_node **a, t_node **b)
+void	rr(t_node **a, t_node **b)
 {
-	int	i;
-	int	j;
-	int	size;
-	int	max_bits;
+	rotate_stack(a);
+	rotate_stack(b);
+	write (1, "rr\n", 3);
+}
 
-	i = 0;
-	size = ft_list_size(*a);
-	max_bits = get_max_bits(*a);
-	while (i < max_bits)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if ((((*a)->index >> i) & 1) == 1)
-				ra(a);
-			else
-				pb(a, b);
-			j++;
-		}
-		while (*b)
-			pa(a, b);
-		i++;
-	}
+void	rrr(t_node **a, t_node **b)
+{
+	reverse_rotate_stack(a);
+	reverse_rotate_stack(b);
+	write(1, "rrr\n", 4);
 }

@@ -12,21 +12,9 @@
 
 #include "push_swap.h"
 
-int	ft_is_digit(char c);
-long		ft_atoi_long(const char *str);
-int	ft_is_valid_nbr(const char *str);
-//int ft_is_within_limits(long value);
-
-/*
-    initialize the stack with the args.
-    skip first argc, which is the programm = argc starts with 1
-    possiamo avere tati argv quanti le integers
-    ma i non 'e nel loop, quindi rimane sempre 1 ? perch'e creo i invece di fare while argc > 1?
-    ft_is_valid_nbr controlla che le integers siano nella rande dei caratteri validi 
-    add_node cosa fa?
-    t_has_dup controlla che siano solo numer originali senza doppioi 
-    Return: the stack, perche?
-*/
+int		ft_is_digit(char c);
+long	ft_atoi_long(const char *str);
+int		ft_is_valid_nbr(const char *str);
 
 t_node	*init_stack(int argc, char *argv[])
 {
@@ -59,12 +47,6 @@ int	ft_is_digit(char c)
 	return (c >= '0' && c <= '9');
 }
 
-/*  
-    ft_atoi_long:
-    if the str has the sign minus, then the sign will be -1, 
-    so when we will mupltiply it will give it +1
-*/
-
 long	ft_atoi_long(const char *str)
 {
 	long	result;
@@ -74,40 +56,29 @@ long	ft_atoi_long(const char *str)
 	result = 0;
 	sign = 1;
 	i = 0;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i] == '-' || str[i] == '+')
-		{
-			if (str[i] == '-')
-				sign = -1;
-			i++;
-		}
-		while (str[i])
-		{
-			if (!ft_is_digit(str[i]))
-				return (0);
-			result = result * 10 + (str[i] - '0');
-			i++;
-		}
-		result = result * sign;
-		if (result < INT_MIN || result > INT_MAX)
-			return (0);
+		if (str[i] == '-')
+			sign = -1;
+		i++;
 	}
+	while (str[i])
+	{
+		if (!ft_is_digit(str[i]))
+			return (0);
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	result *= sign;
+	if (result < INT_MIN || result > INT_MAX)
+		return (0);
 	return (result);
 }
 
-/*
-    ft_is_valid_nbr:
-    Check if the string is a valid number.
-    String must be numeric, need to handle negativ nbr,
-    cannot contain non-numerical char. 
-    Input: a string pointer 
-    Output: a integer
-*/
-
 int	ft_is_valid_nbr(const char *str)
 {
-	int	i;
-	long	nbr;
+	int			i;
+	long		nbr;
 
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
@@ -125,9 +96,3 @@ int	ft_is_valid_nbr(const char *str)
 		return (0);
 	return (1); 
 }
-
-/*int ft_is_within_limits(long value)
-{
-    return (value >= -2147483648 && value <= 2147483647);
-}
-    */
