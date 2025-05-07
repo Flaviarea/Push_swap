@@ -1,34 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorting.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frea <frea@student.42berlin.de>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/27 12:09:50 by frea              #+#    #+#             */
+/*   Updated: 2025/03/27 12:09:52 by frea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_four(t_node **a, t_node **b);
 void	sort_five(t_node **a, t_node **b);
-void	sort_three(t_node **a);
-void	ra(t_node **a);
-
-void	rr(t_node **a, t_node **b)
-{
-	rotate_stack(a);
-	rotate_stack(b);
-	write (1, "rr\n", 3);
-}
-
-void	ra(t_node **a)
-{
-	t_node	*tmp;
-	t_node	*last;
-	
-	if (*a && (*a)->next)
-	{
-		tmp = *a;
-		*a = (*a)->next;
-		last = *a;
-		while (last->next)
-			last = last->next;
-		last->next = tmp;
-		tmp->next = NULL;
-		write(1, "ra\n", 3);
-	}
-}
+void	rotate_stack(t_node **stack);
+void	reverse_rotate_stack(t_node **stack);
 
 void	sort_three(t_node **a)
 {
@@ -90,4 +77,41 @@ void	sort_five(t_node **a, t_node **b)
 	pa(a, b);
 	if ((*a)->value > (*a)->next->value)
 		sa(a);
+}
+
+void	rotate_stack(t_node **stack)
+{
+	t_node	*tmp;
+	t_node	*last;
+
+	if (*stack && (*stack)->next)
+	{
+		tmp = *stack;
+		*stack = (*stack)->next;
+		last = *stack;
+		while (last->next)
+			last = last->next;
+		last->next = tmp;
+		tmp->next = NULL;
+	}
+}
+
+void	reverse_rotate_stack(t_node **stack)
+{
+	t_node	*prev;
+	t_node	*last;
+
+	prev = NULL;
+	last = *stack;
+	if (*stack && (*stack)->next)
+	{
+		while (last->next)
+		{
+			prev = last;
+			last = last->next;
+		}
+		prev->next = NULL;
+		last->next = *stack;
+		*stack = last;
+	}
 }

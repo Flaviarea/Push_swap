@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-void    put_index(t_node **stack);
-int	get_min(t_node *stack);
-void    ft_put_index(t_node **stack, int size);
-void    ft_radix_sort(t_node **a, t_node **b);
+int		get_min(t_node *stack);
+void	ft_put_index(t_node **stack, int size);
+int		get_max_bits(t_node *stack);
+int		is_sorted(t_node *stack);
 
 /*
     ft_list_size:
@@ -34,12 +34,14 @@ int	ft_list_size(t_node *stack)
 		size++;
 		stack = stack->next;
 	}
-	return(size);
+	return (size);
 }
 
 int	get_min(t_node *stack)
 {
-	int min = stack->value;
+	int	min;
+
+	min = stack->value;
 	while (stack)
 	{
 		if (stack->value < min)
@@ -62,8 +64,8 @@ void	ft_put_index(t_node **stack, int size)
 		min_node = NULL;
 		while (current)
 		{
-			if (current->index == -1 && (!min_node 
-						|| current->value < min_node->value))
+			if (current->index == -1 && (!min_node
+					|| current->value < min_node->value))
 				min_node = current;
 			current = current->next;
 		}
@@ -74,12 +76,11 @@ void	ft_put_index(t_node **stack, int size)
 
 int	get_max_bits(t_node *stack)
 {
-	int max_index;
-	int bits;
+	int	max_index;
+	int	bits;
 
 	max_index = 0;
 	bits = 0;
-
 	while (stack)
 	{
 		if (stack->index > max_index)
@@ -91,29 +92,16 @@ int	get_max_bits(t_node *stack)
 	return (bits);
 }
 
-void	ft_radix_sort(t_node **a, t_node **b)
+int	is_sorted(t_node *stack)
 {
-	int	i;
-	int	j;
-	int	size;
-	int	max_bits;
+	t_node	*current;
 
-	i = 0;
-	size = ft_list_size(*a);
-	max_bits = get_max_bits(*a);
-	while (i < max_bits)
+	current = stack;
+	while (current && current->next)
 	{
-		j = 0;
-		while (j < size)
-		{
-			if ((((*a)->index >> i) & 1) == 1)
-				ra(a);
-			else
-				pb(a, b);
-			j++;
-		}
-		while (*b)
-			pa(a, b);
-		i++;
+		if (current->value > current->next->value)
+			return (0);
+		current = current->next;
 	}
+	return (1);
 }

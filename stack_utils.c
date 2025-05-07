@@ -1,4 +1,4 @@
-i/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
@@ -16,7 +16,7 @@ i/* ************************************************************************** *
 void	add_node(t_node **stack, int value);
 void	free_stack(t_node **stack);
 void	print_stack(t_node *stack);
-int	ft_error_dup(t_node *stack);
+int		ft_error_dup(t_node *stack);
 
 /*
     create_node:
@@ -52,11 +52,11 @@ void	add_node(t_node **stack, int value)
 
 	new_node = create_node(value);
 	if (!new_node)
-		return;
+		return ;
 	if (*stack == NULL)
 	{
 		*stack = new_node;
-		return;
+		return ;
 	}
 	current = *stack;
 	while (current->next != NULL)

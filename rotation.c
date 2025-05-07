@@ -1,8 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotation.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frea <frea@student.42berlin.de>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/27 12:09:50 by frea              #+#    #+#             */
+/*   Updated: 2025/03/27 12:09:52 by frea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
+void	rb(t_node **b);
+void	rra(t_node **a);
 void	rrb(t_node **b);
-void	reverse_rotate_stack(t_node **stack);
 void	rrr(t_node **a, t_node **b);
+
+void	ra(t_node **a)
+{
+	t_node	*tmp;
+	t_node	*last;
+
+	if (*a && (*a)->next)
+	{
+		tmp = *a;
+		*a = (*a)->next;
+		last = *a;
+		while (last->next)
+			last = last->next;
+		last->next = tmp;
+		tmp->next = NULL;
+		write(1, "ra\n", 3);
+	}
+}
+
+void	rb(t_node **b)
+{
+	t_node	*tmp;
+	t_node	*last;
+
+	if (*b && (*b)->next)
+	{
+		tmp = *b;
+		*b = (*b)->next;
+		last = *b;
+		while (last->next)
+			last = last->next;
+		last->next = tmp;
+		tmp->next = NULL;
+		write(1, "rb\n", 3);
+	}
+}
 
 void	rra(t_node **a)
 {
@@ -43,24 +92,6 @@ void	rrb(t_node **b)
 		last->next = *b;
 		*b = last;
 		write(1, "rrb\n", 4);
-	}
-}
-
-void	reverse_rotate_stack(t_node **stack)
-{
-	t_node *prev = NULL;
-	t_node *last = *stack;
-
-	if (*stack && (*stack)->next)
-	{
-		while (last->next)
-		{
-			prev = last;
-			last = last->next;
-		}
-		prev->next = NULL;
-		last->next = *stack;
-		*stack = last;
 	}
 }
 

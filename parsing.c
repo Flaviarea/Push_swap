@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-int		ft_is_digit(char c);
+int	ft_is_digit(char c);
 long		ft_atoi_long(const char *str);
-int		ft_is_valid_nbr(const char *str);
-int		ft_is_within_limits(long value);
+int	ft_is_valid_nbr(const char *str);
+//int ft_is_within_limits(long value);
 
 /*
     initialize the stack with the args.
@@ -30,7 +30,7 @@ int		ft_is_within_limits(long value);
 
 t_node	*init_stack(int argc, char *argv[])
 {
-	t_node		*stack;
+	t_node	*stack;
 	int		i;
 
 	stack = NULL;
@@ -48,8 +48,8 @@ t_node	*init_stack(int argc, char *argv[])
 	if (ft_error_dup(stack))
 	{
 		write(2, "Error\n", 6);
-		free_stack (&stack);
-		exit (1);
+		free_stack(&stack);
+		exit(1);
 	}
 	return (stack);
 }
@@ -67,18 +67,20 @@ int	ft_is_digit(char c)
 
 long	ft_atoi_long(const char *str)
 {
-	long		result;
+	long	result;
 	int		sign;
 	int		i;
 
 	result = 0;
 	sign = 1;
 	i = 0;
-	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
+		if (str[i] == '-' || str[i] == '+')
+		{
+			if (str[i] == '-')
+				sign = -1;
+			i++;
+		}
 		while (str[i])
 		{
 			if (!ft_is_digit(str[i]))
@@ -89,8 +91,8 @@ long	ft_atoi_long(const char *str)
 		result = result * sign;
 		if (result < INT_MIN || result > INT_MAX)
 			return (0);
-		return (result);
 	}
+	return (result);
 }
 
 /*
@@ -104,7 +106,7 @@ long	ft_atoi_long(const char *str)
 
 int	ft_is_valid_nbr(const char *str)
 {
-	int		i;
+	int	i;
 	long	nbr;
 
 	i = 0;
@@ -121,10 +123,11 @@ int	ft_is_valid_nbr(const char *str)
 	nbr = ft_atoi_long(str);
 	if (nbr == 0 && str[0] != '0')
 		return (0);
-	return (1);
+	return (1); 
 }
 
-int	ft_is_within_limits(long value)
+/*int ft_is_within_limits(long value)
 {
-	return (value >= -2147483648 && value <= 2147483647);
+    return (value >= -2147483648 && value <= 2147483647);
 }
+    */

@@ -12,8 +12,8 @@
 
 #include "push_swap.h"
 
-void	rotate_stack(t_node **stack);
-void	rb(t_node **b);
+int		main(int argc, char **argv);
+void	ft_radix_sort(t_node **a, t_node **b);
 
 /*
     main:
@@ -27,56 +27,37 @@ void	rb(t_node **b);
 	iterazioni fare nel radix sort.
 */
 
-/*  
-    is_sorted:
-*/
-
-int	is_sorted(t_node *stack)
+void	rr(t_node **a, t_node **b)
 {
-	t_node	*current;
-
-	current = stack;
-	while (current && current->next)
-	{
-		if (current->value > current->next->value)
-			return (0);
-		current = current->next;
-	}
-	return (1);
+	rotate_stack(a);
+	rotate_stack(b);
+	write (1, "rr\n", 3);
 }
 
-void	rb(t_node **b)
+void	ft_radix_sort(t_node **a, t_node **b)
 {
-	t_node	*tmp;
-	t_node	*last;
+	int	i;
+	int	j;
+	int	size;
+	int	max_bits;
 
-	if (*b && (*b)->next)
+	i = 0;
+	size = ft_list_size(*a);
+	max_bits = get_max_bits(*a);
+	while (i < max_bits)
 	{
-		tmp = *b;
-		*b = (*b)->next;
-		last = *b;
-		while (last->next)
-			last = last->next;
-		last->next = tmp;
-		tmp->next = NULL;
-		write(1, "rb\n", 3);
-	}
-}
-
-void	rotate_stack(t_node **stack)
-{
-	t_node	*tmp;
-	t_node	*last;
-
-	if (*stack && (*stack)->next)
-	{
-		tmp = *stack;
-		*stack = (*stack)->next;
-		last = *stack;
-		while (last->next)
-			last = last->next;
-		last->next = tmp;
-		tmp->next = NULL;
+		j = 0;
+		while (j < size)
+		{
+			if ((((*a)->index >> i) & 1) == 1)
+				ra(a);
+			else
+				pb(a, b);
+			j++;
+		}
+		while (*b)
+			pa(a, b);
+		i++;
 	}
 }
 
@@ -105,6 +86,5 @@ int	main(int argc, char **argv)
 		sort_five(&a, &b);
 	else
 		ft_radix_sort(&a, &b);
-			return (free_stack(&a), free_stack(&b), 0);
+	return (free_stack(&a), free_stack(&b), 0);
 }
-
