@@ -94,5 +94,5 @@ int	ft_is_valid_nbr(const char *str)
 	nbr = ft_atoi_long(str);
 	if (nbr == 0 && str[0] != '0')
 		return (0);
-	return (1); 
+	return (1);
 }
