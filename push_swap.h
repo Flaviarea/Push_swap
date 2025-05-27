@@ -40,6 +40,7 @@ t_node	*create_node(int value);
 int		ft_error_dup(t_node *stack);
 void	free_stack(t_node **stack);
 void	add_node(t_node **stack, int value);
+void	print_stack(t_node *stack);
 
 //push_swap_utils.c
 int		ft_list_size(t_node *stack);

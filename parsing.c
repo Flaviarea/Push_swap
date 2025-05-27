@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int		ft_is_digit(char c);
 long	ft_atoi_long(const char *str);
@@ -57,22 +58,22 @@ long	ft_atoi_long(const char *str)
 	sign = 1;
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
+		if (str[i++] == '-')
 			sign = -1;
-		i++;
-	}
+	if (!ft_is_digit(str[i]))
+		return (0);
 	while (str[i])
 	{
-		if (!ft_is_digit(str[i]))
+		if (!ft_is_digit(str[i])) 
 			return (0);
 		result = result * 10 + (str[i] - '0');
+		if (sign == 1 && result > INT_MAX)
+			return (0);
+		if (sign == -1 && - result < INT_MIN)
+			return (0);
 		i++;
 	}
-	result *= sign;
-	if (result < INT_MIN || result > INT_MAX)
-		return (0);
-	return (result);
+	return (result * sign);
 }
 
 int	ft_is_valid_nbr(const char *str)
@@ -92,7 +93,13 @@ int	ft_is_valid_nbr(const char *str)
 		i++;
 	}
 	nbr = ft_atoi_long(str);
-	if (nbr == 0 && str[0] != '0')
+	if (nbr == 0)
+	{
+		if (str[0] == '0' && str[1] == '\0')
+			return (1);
+		if ((str[0] == '+' || str[0] == '-') && str[1] == '0' && str[2] == '\0')
+			return (1);
 		return (0);
+	}
 	return (1);
 }

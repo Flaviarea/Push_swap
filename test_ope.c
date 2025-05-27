@@ -1,7 +1,34 @@
 #include "push_swap.h"
 #include <string.h> // per strcmp
 
-void prepare_stack(t_node **a, t_node **b)
+int main(void)
+{
+    char *tests[] = {
+        "123",
+        "-123",
+        "+123",
+        "0",
+        "-0",
+        "abc",
+        "2147483647",   // INT_MAX
+        "-2147483648",  // INT_MIN
+        "2147483648",   // overflow positivo
+        "-2147483649",  // overflow negativo
+        "",
+        "+",
+        "123abc",
+        NULL
+    };
+
+    for (int i = 0; tests[i] != NULL; i++) {
+        printf("Test: '%s' -> is_valid = %d\n", tests[i], ft_is_valid_nbr(tests[i]));
+    }
+    return 0;
+}
+
+
+
+/*void prepare_stack(t_node **a, t_node **b)
 {
     *a = NULL;
     *b = NULL;
@@ -58,7 +85,7 @@ int main(int argc, char **argv)
         rrb(&b);
     else if (strcmp(argv[1], "rrr") == 0)
         rrr(&a, &b);
-        */
+        
     else
     {
         printf("Invalid operation\n");
@@ -71,3 +98,4 @@ int main(int argc, char **argv)
     free_stack(&b);
     return (0);
 }
+*?
