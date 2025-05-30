@@ -22,8 +22,8 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2)
 		return (0);
-	a = init_stack(argc, argv);
-	if (is_sorted(a))
+	a = parse_args(argc, argv);
+	if (!a || is_sorted(a))
 		return (free_stack(&a), 0);
 	size = ft_list_size(a);
 	ft_put_index(&a, size);

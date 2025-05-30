@@ -2,6 +2,9 @@ NAME = push_swap
 HEADER = push_swap.h
 CFLAGS = -Wall -Wextra -Werror 
 
+LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
 SRC = parsing.c \
 	operations.c \
 	push_swap_utils.c \
@@ -11,22 +14,28 @@ SRC = parsing.c \
 	rotation.c \
 	radix_sort.c \
 	double_rotation.c \
+	parse_args.c \
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+all: $(LIBFT) $(NAME)
+
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ) 
-	cc $(CFLAGS) -o $(NAME) $(OBJ)
+	cc $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
 
 %.o: %.c
-	cc $(CFLAGS) -I . -c $< -o $@
+	cc $(CFLAGS) -I . -I $(LIBFT_DIR) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
+	@make -C $(LIBFT_DIR) clean
 
 fclean: clean	
 	rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

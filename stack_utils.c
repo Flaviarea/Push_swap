@@ -85,19 +85,3 @@ int	ft_error_dup(t_node *stack)
 	}
 	return (0);
 }
-
-/*#include <stdio.h>
-
-void print_stack(t_node *stack)
-{
-    t_node *current;
-
-    current = stack;
-    while (current != NULL)
-    {
-        printf("%d ", current->value); // change to ft_printf!!
-        current = current->next;
-    }
-    printf("\n"); // change to ft_printf!!
-}
-	*/

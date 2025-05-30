@@ -18,6 +18,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "libft/libft.h"
 
 typedef struct s_node
 {
@@ -34,6 +35,12 @@ t_node	*init_stack(int argc, char *argv[]);
 int		ft_is_digit(char c);
 long	ft_atoi_long(const char *str);
 int		ft_is_valid_nbr(const char *str);
+
+//parse_args.c
+char	**ft_split_args(char *arg);
+t_node	*init_stack_split(char **args);
+void	free_split(char **args);
+t_node	*parse_args(int argc, char **argv);
 
 //stack utils.c
 t_node	*create_node(int value);
