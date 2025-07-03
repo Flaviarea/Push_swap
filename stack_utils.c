@@ -15,7 +15,6 @@
 void	add_node(t_node **stack, int value);
 void	free_stack(t_node **stack);
 int		ft_error_dup(t_node *stack);
-void	print_stack(t_node *stack);
 
 t_node	*create_node(int value)
 {
@@ -86,19 +85,5 @@ int	ft_error_dup(t_node *stack)
 	return (1);  // changed both return value
 }
 
-#include <stdio.h>
-
-void print_stack(t_node *stack)
-{
-    t_node *current;
-
-    current = stack;
-    while (current != NULL)
-    {
-        printf("%d ", current->value); // change to ft_printf!!
-        current = current->next;
-    }
-    printf("\n"); // change to ft_printf!!
-}
 
 

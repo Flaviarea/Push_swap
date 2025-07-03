@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap.h"	
 
 char	**ft_split_args(char *arg);
 t_node	*init_stack_split(char **args);
@@ -41,13 +41,13 @@ t_node	*parse_args(int argc, char **argv)
 	{
 		if (is_empty_or_spaces(argv[1]))
 		{
-			write(2, "Error\n", 6);
+			//write(2, "Error\n", 6);
 			return (NULL);
 		}
 		char **args = ft_split_args(argv[1]);
 		if (!args || !args[0])
 		{
-			write(2, "Error\n", 6);
+			//write(2, "Error\n", 6);
 			if (args)
 				free_split(args);
 			return (NULL);
@@ -86,14 +86,14 @@ t_node	*init_stack_split(char **args)
 			exit(1);
 		}
 		num = ft_atoi_long(args[i]);
-		if (!ft_error_dup(a)) // changed with !
+		add_node(&a, (int)num);
+		if (!ft_error_dup(a))
 		{
 			write(2, "Error\n", 6);
 			free_split(args);
 			free_stack(&a);
 			exit(1);
 		}
-		add_node(&a, (int)num);
 		i++;
 	}
 	return (a);

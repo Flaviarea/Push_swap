@@ -33,7 +33,7 @@ t_node	*init_stack(int argc, char *argv[])
 			exit(1);
 		}
 		add_node(&stack, ft_atoi_long(argv[i]));
-		if (!ft_error_dup(stack)) // changed with !
+		if (!ft_error_dup(stack))
 		{
 			write(2, "Error\n", 6);
 			free_stack(&stack);
