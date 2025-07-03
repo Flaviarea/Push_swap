@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int		ft_is_digit(char c);
 long	ft_atoi_long(const char *str);
@@ -29,10 +28,12 @@ t_node	*init_stack(int argc, char *argv[])
 		if (!ft_is_valid_nbr(argv[i]))
 		{
 			write(2, "Error\n", 6);
+			if (stack)
+				free_stack(&stack); 
 			exit(1);
 		}
 		add_node(&stack, ft_atoi_long(argv[i]));
-		if (ft_error_dup(stack))
+		if (!ft_error_dup(stack)) // changed with !
 		{
 			write(2, "Error\n", 6);
 			free_stack(&stack);
@@ -89,7 +90,10 @@ int	ft_is_valid_nbr(const char *str)
 	while (str[i])
 	{
 		if (!ft_is_digit(str[i]))
+		{
+			//write(2, "Error\n", 6);
 			return (0);
+		}
 		i++;
 	}
 	nbr = ft_atoi_long(str);

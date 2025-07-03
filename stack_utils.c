@@ -78,10 +78,27 @@ int	ft_error_dup(t_node *stack)
 		while (checker)
 		{
 			if (a->value == checker->value)
-				return (1);
+				return (0); //changed 
 			checker = checker->next;
 		}
 		a = a->next;
 	}
-	return (0);
+	return (1);  // changed both return value
 }
+
+#include <stdio.h>
+
+void print_stack(t_node *stack)
+{
+    t_node *current;
+
+    current = stack;
+    while (current != NULL)
+    {
+        printf("%d ", current->value); // change to ft_printf!!
+        current = current->next;
+    }
+    printf("\n"); // change to ft_printf!!
+}
+
+

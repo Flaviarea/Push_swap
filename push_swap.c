@@ -12,6 +12,41 @@
 
 #include "push_swap.h"
 
+/*
+    main:
+    Read the arguments from the command line and convert them to numbers.
+    Initialize the stack a with these numbers.
+    Handle errors (duplicates, non-numeric values, int bounds).
+    Call Radix Sort to sort the numbers.
+    Print the operations performed.
+
+    creiamo due liste e una int size per tenere conto di ?
+*/
+
+/*int main(int argc, char *argv[])
+{
+    t_node *node_a;
+    t_node *node_b;
+    int size;
+
+    node_a = NULL;
+    node_b = NULL;
+    if (argc < 2)
+        return(0);
+
+    if (argc > 1)
+    {
+        node_a = init_stack(argc, argv); // transform input into a linked list
+        size = ft_list_size(node_a); // count elements of the list
+        ft_put_index(&node_a, size); // assign a index to the number for radix sort
+        ft_radix_sort(&node_a, &node_b); // sort numbers
+        free(node_a);
+        free(node_b);
+    }
+    return(0);
+}
+    */
+
 int	main(int argc, char **argv)
 {
 	t_node	*a;

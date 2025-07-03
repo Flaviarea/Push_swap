@@ -1,6 +1,6 @@
 NAME = push_swap
 HEADER = push_swap.h
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
