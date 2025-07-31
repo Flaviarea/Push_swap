@@ -42,8 +42,9 @@ t_node	*parse_args(int argc, char **argv)
 		a = init_stack(argc, argv);
 	else
 	{
-		if (is_empty_or_spaces(argv[1]))
+		if (argc == 1 || is_empty_or_spaces(argv[1]))
 		{
+			write(2, "Error\n", 6);
 			return (NULL);
 		}
 		args = ft_split_args(argv[1]);
@@ -51,6 +52,7 @@ t_node	*parse_args(int argc, char **argv)
 		{
 			if (args)
 				free_split(args);
+			write(2, "Error\n", 6);
 			return (NULL);
 		}
 		a = init_stack_split(args);
