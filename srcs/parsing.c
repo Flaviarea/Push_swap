@@ -89,12 +89,8 @@ int	ft_is_valid_nbr(const char *str)
 		return (0);
 	while (str[i])
 	{
-		if (!ft_is_digit(str[i]))
-		{
-			//write(2, "Error\n", 6);
+		if (!ft_is_digit(str[i++]))
 			return (0);
-		}
-		i++;
 	}
 	nbr = ft_atoi_long(str);
 	if (nbr == 0)

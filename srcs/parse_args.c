@@ -16,9 +16,11 @@ char	**ft_split_args(char *arg);
 t_node	*init_stack_split(char **args);
 void	free_split(char **args);
 
-static int is_empty_or_spaces(const char *str)
+static int	is_empty_or_spaces(const char *str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	if (!str)
 		return (1);
 	while (str[i])
@@ -33,6 +35,7 @@ static int is_empty_or_spaces(const char *str)
 t_node	*parse_args(int argc, char **argv)
 {
 	t_node	*a;
+	char	**args;
 
 	a = NULL;
 	if (argc > 2)
@@ -41,13 +44,11 @@ t_node	*parse_args(int argc, char **argv)
 	{
 		if (is_empty_or_spaces(argv[1]))
 		{
-			//write(2, "Error\n", 6);
 			return (NULL);
 		}
-		char **args = ft_split_args(argv[1]);
+		args = ft_split_args(argv[1]);
 		if (!args || !args[0])
 		{
-			//write(2, "Error\n", 6);
 			if (args)
 				free_split(args);
 			return (NULL);
@@ -79,21 +80,11 @@ t_node	*init_stack_split(char **args)
 	while (args[i])
 	{
 		if (!ft_is_valid_nbr(args[i]))
-		{
-			write(2, "Error\n", 6);
-			free_split(args);
-			free_stack(&a);
-			exit(1);
-		}
+			handle_error(args, &a);
 		num = ft_atoi_long(args[i]);
 		add_node(&a, (int)num);
 		if (!ft_error_dup(a))
-		{
-			write(2, "Error\n", 6);
-			free_split(args);
-			free_stack(&a);
-			exit(1);
-		}
+			handle_error(args, &a);
 		i++;
 	}
 	return (a);
@@ -111,4 +102,3 @@ void	free_split(char **args)
 	}
 	free(args);
 }
-

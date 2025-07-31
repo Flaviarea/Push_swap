@@ -38,3 +38,36 @@ void	ft_radix_sort(t_node **a, t_node **b)
 		i++;
 	}
 }
+
+void	push_min_to_b(t_node **a, t_node **b)
+{
+	int		min;
+	int		pos;
+	int		size;
+	t_node	*tmp;
+
+	min = get_min(*a);
+	size = ft_list_size(*a);
+	pos = 0;
+	tmp = *a;
+	while (tmp->value != min)
+	{
+		pos++;
+		tmp = tmp->next;
+	}
+	if (pos <= size / 2)
+		while (pos--)
+			ra(a);
+	else
+		while (pos++ < size)
+			rra(a);
+	pb(a, b);
+}
+
+void	handle_error(char **args, t_node **stack)
+{
+	write(2, "Error\n", 6);
+	free_split(args);
+	free_stack(stack);
+	exit(1);
+}

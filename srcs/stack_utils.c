@@ -77,13 +77,10 @@ int	ft_error_dup(t_node *stack)
 		while (checker)
 		{
 			if (a->value == checker->value)
-				return (0); //changed 
+				return (0);
 			checker = checker->next;
 		}
 		a = a->next;
 	}
-	return (1);  // changed both return value
+	return (1);
 }
-
-
-

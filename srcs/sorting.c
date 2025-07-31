@@ -48,10 +48,10 @@ void	sort_three(t_node **a)
 
 void	sort_four(t_node **a, t_node **b)
 {
-	int	min;
-	int	pos;
-	int	size;
-	t_node *tmp;
+	int		min;
+	int		pos;
+	int		size;
+	t_node	*tmp;
 
 	min = get_min(*a);
 	size = ft_list_size(*a);
@@ -75,40 +75,15 @@ void	sort_four(t_node **a, t_node **b)
 
 void	sort_five(t_node **a, t_node **b)
 {
-	int	min;
-	int	pos;
-	int	size;
 	int	i;
-	t_node *tmp;
 
 	i = 0;
-	while (i < 2)
-	{
-		min = get_min(*a);
-		size = ft_list_size(*a);
-		pos = 0;
-		tmp = *a;
-		while (tmp->value != min)
-		{
-			pos++;
-			tmp = tmp->next;
-		}
-		if (pos <= size / 2)
-			while (pos--)
-				ra(a);
-		else
-			while (pos++ < size)
-				rra(a);
-		pb(a, b);
-		i++;
-	}
+	while (i++ < 2)
+		push_min_to_b(a, b);
 	sort_three(a);
 	pa(a, b);
 	pa(a, b);
-	if ((*a)->value > (*a)->next->value)
-		sa(a);
 }
-
 
 void	rotate_stack(t_node **stack)
 {

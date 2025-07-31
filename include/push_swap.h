@@ -27,8 +27,19 @@ typedef struct s_node
 	struct s_node		*next;
 }		t_node;
 
+typedef struct s_sort
+{
+	t_node	*tmp;
+	int		min;
+	int		pos;
+	int		size;
+	int		i;
+}	t_sort;
+
 //radix_sort.c
 void	ft_radix_sort(t_node **a, t_node **b);
+void	push_min_to_b(t_node **a, t_node **b);
+void	handle_error(char **args, t_node **stack);
 
 //parsing.c
 t_node	*init_stack(int argc, char *argv[]);
@@ -47,6 +58,7 @@ t_node	*create_node(int value);
 int		ft_error_dup(t_node *stack);
 void	free_stack(t_node **stack);
 void	add_node(t_node **stack, int value);
+void	print_error_and_exit(char **args, t_node **stack);
 
 //push_swap_utils.c
 int		ft_list_size(t_node *stack);
