@@ -27,15 +27,6 @@ typedef struct s_node
 	struct s_node		*next;
 }		t_node;
 
-typedef struct s_sort
-{
-	t_node	*tmp;
-	int		min;
-	int		pos;
-	int		size;
-	int		i;
-}	t_sort;
-
 //radix_sort.c
 void	ft_radix_sort(t_node **a, t_node **b);
 void	push_min_to_b(t_node **a, t_node **b);
